@@ -19,7 +19,6 @@ export default class Header extends React.Component {
           <Nav pullRight>
             <RouteNavItem eventKey={1} href="/">Home</RouteNavItem>
             <RouteNavItem eventKey={2} href="/demo">Demo</RouteNavItem>
-            <RouteNavItem eventKey={3} href="/help">Help</RouteNavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
