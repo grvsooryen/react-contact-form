@@ -125,6 +125,10 @@ export default class Demo extends React.Component {
               <FormControl.Feedback />
             </FormGroup>
             <Button bsStyle="primary" onClick={this.saveForm} block >SAVE</Button>
+            <hr />
+            <pre>
+              {JSON.stringify(this.state, null, 4)}
+            </pre>
           </Col>
         </Row>
       </Grid>
