@@ -1,5 +1,7 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock, Grid, Row, Col } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Grid, Row, Col, Button } from 'react-bootstrap';
+
+import APIServices from "../../services";
 
 export default class Demo extends React.Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export default class Demo extends React.Component {
     this.handleSubjectChange = this.handleSubjectChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.saveForm = this.saveForm.bind(this);
   }
 
   getValidationState(min, max) {
@@ -49,6 +52,19 @@ export default class Demo extends React.Component {
     this.setState({ message: e.target.value });
   }
 
+  saveForm(e) {
+    e.preventDefault();
+    APIServices.saveForm(this.state)
+    .then(data => {
+          console.log("success");
+      },
+      data => {
+        console.log("API returned non 200");
+    })
+    .catch(err => {
+        dispatch(errorRTQ("API not working"));
+    });
+  }
 
   render() {
     return (
@@ -108,7 +124,7 @@ export default class Demo extends React.Component {
               />
               <FormControl.Feedback />
             </FormGroup>
-
+            <Button bsStyle="primary" onClick={this.saveForm} block >SAVE</Button>
           </Col>
         </Row>
       </Grid>
